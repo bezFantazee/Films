@@ -39,19 +39,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.practicum.films.R
-import com.practicum.films.domain.models.FilmDescription
-import com.practicum.films.presenter.FilmsViewModel
-import com.practicum.films.ui.FilmsUiEvent
-import com.practicum.films.ui.components.EditFilmField
-import com.practicum.films.ui.components.FilmList
 import com.practicum.films.ui.components.FilmTopBar
 import com.practicum.films.ui.FilmsUiState
 import com.practicum.films.ui.NavRoutes
 import com.practicum.films.ui.components.EmptyScreen
 import com.practicum.films.ui.components.ErrorScreen
 import com.practicum.films.ui.components.LoadingScreen
-import com.practicum.films.ui.theme.FilmsThemeValues
+import androidx.compose.ui.graphics.Color
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -66,9 +60,9 @@ fun FilmScreen(){
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(color = FilmsThemeValues.colors.backgroundVariant)
+                    .background(color = Color(0xFFA5ACA5))
                     .statusBarsPadding()
-                    .padding(4.dp)
+                    .padding(8.dp)
             ){
                 if(showBackButton){
                     IconButton(
@@ -80,7 +74,7 @@ fun FilmScreen(){
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Назад",
-                            tint = FilmsThemeValues.colors.onPrimary,
+                            tint = Color(0xFF17191D),
                             modifier = Modifier
                                 .size(32.dp)
                         )
@@ -101,8 +95,8 @@ fun FilmScreen(){
                 .background(
                     Brush.verticalGradient(
                         colorStops = arrayOf(
-                            0.5f to FilmsThemeValues.colors.backgroundVariant,
-                            1f to FilmsThemeValues.colors.background
+                            0.5f to Color(0xFFA5ACA5),
+                            1f to Color(0xFFB89C9B)
                         )
                     )
                 )

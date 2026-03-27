@@ -29,8 +29,7 @@ import com.bumptech.glide.integration.compose.GlideImage
 import com.bumptech.glide.integration.compose.placeholder
 import com.practicum.films.R
 import com.practicum.films.ui.NavRoutes
-import com.practicum.films.ui.theme.FilmsTheme
-import com.practicum.films.ui.theme.FilmsThemeValues
+import androidx.compose.ui.graphics.Color
 import androidx.constraintlayout.compose.Dimension
 
 @OptIn(ExperimentalGlideComposeApi::class)
@@ -70,7 +69,7 @@ fun FilmDetailsScreen(navController: NavController, filmImage: String, filmTitle
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Medium,
                 textAlign = TextAlign.Justify,
-                color = FilmsThemeValues.colors.onPrimary,
+                color = Color(0xFF17191D),
                 modifier = Modifier
                     .constrainAs(title) {
                         top.linkTo(image.bottom, margin = 32.dp)
@@ -82,7 +81,7 @@ fun FilmDetailsScreen(navController: NavController, filmImage: String, filmTitle
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Medium,
                 textAlign = TextAlign.Justify,
-                color = FilmsThemeValues.colors.onPrimary,
+                color = Color(0xFF17191D),
                 modifier = Modifier
                     .constrainAs(description) {
                         top.linkTo(bottomBarrier, margin = 8.dp)
@@ -94,7 +93,7 @@ fun FilmDetailsScreen(navController: NavController, filmImage: String, filmTitle
                 text = filmTitle,
                 fontSize = 16.sp,
                 textAlign = TextAlign.Justify,
-                color = FilmsThemeValues.colors.onPrimary,
+                color = Color(0xFF17191D),
                 modifier = Modifier
                     .constrainAs(titleText) {
                         top.linkTo(title.top)
@@ -107,7 +106,7 @@ fun FilmDetailsScreen(navController: NavController, filmImage: String, filmTitle
                 text = filmDescription,
                 fontSize = 16.sp,
                 textAlign = TextAlign.Justify,
-                color = FilmsThemeValues.colors.onPrimary,
+                color = Color(0xFF17191D),
                 modifier = Modifier
                     .constrainAs(descriptionText) {
                         top.linkTo(description.top)

@@ -9,42 +9,54 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
-val filmBaseLightPalette = ColorPalette(
+private val DarkColorScheme = darkColorScheme(
+    primary = Color(0xFF394A56),
+    secondary = Color(0xFF5D6E7D),
+    tertiary = Color(0xFFDB888B),
+    background = Color(0xFFB89C9B),
+    onPrimary = Color(0xFFD4BCC8)
+)
+
+private val LightColorScheme = lightColorScheme(
     primary = Color(0xD8D4BCC8),
     secondary = Color(0xFF5D6E7D),
     tertiary = Color(0xFFDB888B),
     background = Color(0xFFB89C9B),
-    backgroundVariant = Color(0xFFA5ACA5),
-    onPrimary = Color(0xFF17191D),
-    onSecondary = Color.White
-)
+    onPrimary = Color(0xFF17191D)
 
-val filmBaseDarkPalette = filmBaseLightPalette.copy(
-    primary = Color(0xFF394A56),
-    onPrimary = Color(0xFFD4BCC8),
-    background = Color(0xFFB89C9B),
-    backgroundVariant = Color(0xFF17191D),
+    /* Other default colors to override
+    background = Color(0xFFFFFBFE),
+    surface = Color(0xFFFFFBFE),
+    onPrimary = Color.White,
+    onSecondary = Color.White,
+    onTertiary = Color.White,
+    onBackground = Color(0xFF1C1B1F),
+    onSurface = Color(0xFF1C1B1F),
+    */
 )
-
-val LocalColors = staticCompositionLocalOf<ColorPalette> {
-    error("LocalColors is not provided")
-}
 
 @Composable
 fun FilmsTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
+    // Dynamic color is available on Android 12+
+    dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colors = if (!darkTheme) filmBaseLightPalette
-    else filmBaseDarkPalette
+    val colorScheme = when {
+        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+            val context = LocalContext.current
+            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+        }
 
-    CompositionLocalProvider(
-        LocalColors provides colors,
+        darkTheme -> DarkColorScheme
+        else -> LightColorScheme
+    }
+
+    MaterialTheme(
+        colorScheme = colorScheme,
         content = content
     )
 }

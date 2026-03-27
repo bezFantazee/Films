@@ -60,17 +60,13 @@ import com.bumptech.glide.integration.compose.placeholder
 import com.practicum.films.domain.models.FilmDescription
 import com.practicum.films.domain.models.filmsList
 import com.practicum.films.ui.FilmApp
-import com.practicum.films.ui.theme.FilmsTheme
-import com.practicum.films.ui.theme.FilmsThemeValues
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            FilmsTheme {
-                FilmApp()
-            }
+            FilmApp()
         }
     }
 }

@@ -36,7 +36,6 @@ import com.practicum.films.ui.components.EmptyScreen
 import com.practicum.films.ui.components.ErrorScreen
 import com.practicum.films.ui.components.FilmList
 import com.practicum.films.ui.components.LoadingScreen
-import com.practicum.films.ui.theme.FilmsThemeValues
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -92,8 +91,17 @@ fun FilmListScreen(navController: NavController, innerPadding: PaddingValues) {
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp)
+                .padding(2.dp)
         )
+//        FilmList(
+//            navController = navController,
+//            //films = (state as FilmsUiState.Content).filmsDescription,
+//            //films = films,
+//            modifier = Modifier
+//                .fillMaxSize()
+//                .padding(horizontal = 12.dp)
+//                .clip(RoundedCornerShape(16.dp))
+//        )
         when (state) {
             FilmsUiState.Initial -> {}
             FilmsUiState.Loading -> {
@@ -117,14 +125,14 @@ fun FilmListScreen(navController: NavController, innerPadding: PaddingValues) {
                 ErrorScreen(
                     message = (state as FilmsUiState.Error).errorMessage,
                     modifier = Modifier
-                        .padding(top = 192.dp)
+                        .padding(top = 176.dp)
                 )
             }
             is FilmsUiState.Empty -> {
                 EmptyScreen(
                     message = (state as FilmsUiState.Empty).message,
                     modifier = Modifier
-                        .padding(top = 192.dp)
+                        .padding(top = 180.dp)
                 )
             }
         }

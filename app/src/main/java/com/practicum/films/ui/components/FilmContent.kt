@@ -42,7 +42,9 @@ import com.practicum.films.R
 import com.practicum.films.domain.models.FilmDescription
 import com.practicum.films.ui.NavRoutes
 import com.practicum.films.ui.common.FilmPoster
-import com.practicum.films.ui.theme.FilmsThemeValues
+import androidx.compose.ui.graphics.Color
+import com.practicum.films.domain.models.filmsList
+import com.practicum.films.ui.common.FilmDescription
 
 @Composable
 fun FilmTopBar(modifier: Modifier = Modifier){
@@ -56,9 +58,9 @@ fun FilmTopBar(modifier: Modifier = Modifier){
             fontWeight = FontWeight.SemiBold,
             style = TextStyle(
                 brush = Brush.verticalGradient(colorStops = arrayOf(
-                    0.0f to FilmsThemeValues.colors.onPrimary,
-                    0.4f to FilmsThemeValues.colors.onPrimary,
-                    1f to FilmsThemeValues.colors.tertiary
+                    0.0f to Color(0xFF17191D),
+                    0.4f to Color(0xFF17191D),
+                    1f to Color(0xFFDB888B)
                 ))
             )
         )
@@ -84,26 +86,26 @@ fun EditFilmField(
             )
         },
         colors = TextFieldDefaults.colors(
-            unfocusedContainerColor = FilmsThemeValues.colors.secondary,
-            focusedContainerColor = FilmsThemeValues.colors.onPrimary,
-            errorContainerColor = FilmsThemeValues.colors.tertiary,
+            unfocusedContainerColor = Color(0xFF5D6E7D),
+            focusedContainerColor = Color(0xFF17191D),
+            errorContainerColor = Color(0xFFDB888B),
 
-            unfocusedTextColor = FilmsThemeValues.colors.onPrimary,
-            focusedTextColor = FilmsThemeValues.colors.primary,
+            unfocusedTextColor = Color(0xFF17191D),
+            focusedTextColor = Color(0xD8D4BCC8),
 
-            unfocusedLabelColor = FilmsThemeValues.colors.primary,
-            focusedLabelColor = FilmsThemeValues.colors.primary,
+            unfocusedLabelColor = Color(0xD8D4BCC8),
+            focusedLabelColor = Color(0xD8D4BCC8),
 
-            unfocusedIndicatorColor = FilmsThemeValues.colors.onPrimary,
-            focusedIndicatorColor = FilmsThemeValues.colors.primary,
+            unfocusedIndicatorColor = Color(0xFF17191D),
+            focusedIndicatorColor = Color(0xD8D4BCC8),
 
-            cursorColor = FilmsThemeValues.colors.backgroundVariant
+            cursorColor = Color(0xFFA5ACA5)
         ),
         leadingIcon = {
             Icon(
                 imageVector = Icons.Default.Search,
                 contentDescription = "Поиск",
-                tint = FilmsThemeValues.colors.primary
+                tint = Color(0xD8D4BCC8)
             )
         },
         trailingIcon = {
@@ -131,11 +133,12 @@ fun EditFilmField(
 }
 
 @Composable
-fun FilmList(navController: NavController, films: List<FilmDescription>, modifier: Modifier = Modifier){
+fun FilmList(navController: NavController, films: List<FilmDescription>? = null, modifier: Modifier = Modifier){
+    val filmsContent = films ?: filmsList
     LazyColumn(
         modifier = modifier
     ){
-        items(films) { film ->
+        items(filmsContent) { film ->
             FilmItem(
                 film = film,
                 modifier = Modifier
@@ -161,8 +164,8 @@ fun FilmList(navController: NavController, films: List<FilmDescription>, modifie
 fun FilmItem(film: FilmDescription, modifier: Modifier = Modifier){
     Card(
         colors = CardDefaults.cardColors(
-            containerColor = FilmsThemeValues.colors.primary,
-            contentColor = FilmsThemeValues.colors.onPrimary
+            containerColor = Color(0xD8D4BCC8),
+            contentColor = Color(0xFF17191D)
         ),
         modifier = modifier
     ) {
@@ -179,7 +182,7 @@ fun FilmItem(film: FilmDescription, modifier: Modifier = Modifier){
                     .aspectRatio(2f / 3f)
                     .clip(RoundedCornerShape(4.dp))
             )
-            com.practicum.films.ui.common.FilmDescription(
+            FilmDescription(
                 film = film,
                 modifier = Modifier
                     .weight(3f)

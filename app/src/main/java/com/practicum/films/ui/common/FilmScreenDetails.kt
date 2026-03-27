@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -15,11 +16,10 @@ import com.bumptech.glide.integration.compose.GlideImage
 import com.bumptech.glide.integration.compose.placeholder
 import com.practicum.films.R
 import com.practicum.films.domain.models.FilmDescription
-import com.practicum.films.ui.theme.FilmsThemeValues
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun FilmPoster(film: FilmDescription, modifier: Modifier = Modifier.Companion){
+fun FilmPoster(film: FilmDescription, modifier: Modifier = Modifier){
     GlideImage(
         model = film.image,
         contentDescription = film.title,
@@ -31,7 +31,7 @@ fun FilmPoster(film: FilmDescription, modifier: Modifier = Modifier.Companion){
 }
 
 @Composable
-fun FilmDescription(film: FilmDescription, modifier: Modifier = Modifier.Companion){
+fun FilmDescription(film: FilmDescription, modifier: Modifier = Modifier){
     Column(
         modifier = modifier
     ) {
@@ -56,7 +56,18 @@ fun PlaceHolder(message: String, modifier: Modifier = Modifier){
         modifier = modifier,
         text = message,
         fontSize = 32.sp,
-        color = FilmsThemeValues.colors.tertiary,
+        color = Color(0xFFDB888B),
+        textAlign = TextAlign.Center,
+    )
+}
+
+@Composable
+fun EmptyPlaceholder(message: String, modifier: Modifier = Modifier){
+    Text(
+        modifier = modifier,
+        text = message,
+        fontSize = 28.sp,
+        color = Color(0xFF5D6E7D),
         textAlign = TextAlign.Center,
     )
 }
